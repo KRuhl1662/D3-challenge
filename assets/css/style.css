@@ -12,8 +12,8 @@ html {
 body {
   /* Padding bottom by footer height */
   padding-bottom: 80px;
-  background-color: #111122;
-  color: #eeeeee;
+  background-color: #e7e7ec;
+  color: #0a0a0a;
 }
 
 #footer {

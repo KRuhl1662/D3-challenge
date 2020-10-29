@@ -72,11 +72,19 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
         .data(healthData)
         .enter()
         .append("circle")
+    // circlesGroup.append("circle")
         .attr("cx", d => xLinearScale(d.age))
         .attr("cy", d => yLinearScale(d.smokes))
         .attr("r", "15")
         .attr("fill", "blue")
         .attr("opacity", ".5");
+
+    // add state abbrev. to circles
+    // circlesGroup.append("text")
+    //     .text(d => d.abbr)
+    //     .attr("x", d => xLinearScale(d.age) - 10)
+    //     .attr("y", d => yLinearScale(d.smokes) + 5)
+    //     .attr("color","red");
 
     
     // intialize tool tip
@@ -86,6 +94,10 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
         .html(function(d) {
             return (`${d.state}<br>Age: ${d.age}<br>Smokes: ${d.smokes}`);
         });
+
+    
+    // // create the tooltip in the chart
+    // scatterGroup.call(toolTip);
 
 
     // create event listeners that will show and hide the tooltip when activated

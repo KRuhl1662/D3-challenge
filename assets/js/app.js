@@ -46,11 +46,11 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
 
     // create scale funtions (what values will be on axis)
     let xLinearScale = d3.scaleLinear()
-        .domain([30, d3.max(healthData, d => d.age)]) // the range of numbers on the axis
+        .domain([d3.min(healthData, d => d.age - 2), d3.max(healthData, d => d.age)]) // the range of numbers on the axis
         .range([0,width]);
 
     let yLinearScale = d3.scaleLinear()
-        .domain([0, d3.max(healthData, d => d.smokes)])
+        .domain([d3.min(healthData, d => d.smokes - 2), d3.max(healthData, d => d.smokes)])
         .range([height, 0]);
 
 
@@ -75,7 +75,7 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
         .attr("cx", d => xLinearScale(d.age))
         .attr("cy", d => yLinearScale(d.smokes))
         .attr("r", "15")
-        .attr("fill", "blue")
+        .attr("fill", "#816799")
         .attr("opacity", ".5");
 
     
@@ -108,7 +108,7 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
         .text("Number of Smokers");
 
     scatterGroup.append("text") // this will create the x axis label
-        .attr("transform", `translate(${width / 2}, ${height + margin.top +10})`)
+        .attr("transform", `translate(${width / 2}, ${height + margin.top +4})`)
         .attr("class", "axisText")
         .text("Age");
 
@@ -119,7 +119,7 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
         .text(d => d.abbr)
         .attr("x", d => xLinearScale(d.age) - 10)
         .attr("y", d => yLinearScale(d.smokes) + 5)
-        .attr("color","red");
+        .attr("class","stabbrvtext");
 
     // create the tooltip in the chart
     scatterGroup.call(toolTip);
